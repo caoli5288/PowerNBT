@@ -36,9 +36,14 @@ public final class NBTBlockUtils {
                     .withTypes("{nms}.NBTTagCompound, {nm}.nbt.NBTTagCompound, {NBTTagCompound}")
                     .withSuffix("save")
     );
-    private RefMethod write = classTileEntity.findMethod( new MethodCondition()
+    private RefMethod write = classTileEntity.findMethod(
+            new MethodCondition() // 1.12
                     .withTypes("{nms}.NBTTagCompound, {nm}.nbt.NBTTagCompound, {NBTTagCompound}")
+                    .withSuffix("load"),
+            new MethodCondition() // 1.11, cauldron
+                    .withTypes("{NBTTagCompound}, {nms}.NBTTagCompound, {nm}.nbt.NBTTagCompound")
                     .withSuffix("a")
+                    .withReturnType(void.class)
     );
 
     /**
